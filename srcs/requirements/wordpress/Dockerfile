@@ -8,6 +8,5 @@ RUN rm latest.tar.gz
 RUN mkdir -p /var/www/html
 RUN mv wordpress/* /var/www/html
 RUN mkdir conf
-RUN mkdir -p /var/run/php/
 COPY ./conf/ ./conf
 CMD bash ./conf/wp_config.sh

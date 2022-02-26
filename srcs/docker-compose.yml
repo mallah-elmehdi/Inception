@@ -2,7 +2,6 @@ version: "3"
 
 
 services:
-
   nginx:
     build: requirements/nginx
     image: nginx
@@ -18,9 +17,11 @@ services:
     build: requirements/mariadb
     image: mariadb
     container_name: mariadb
+    ports:
+      - 3306:3306
     env_file: .env
     volumes:
-      - mokellah_volume:/var/lib/mysql
+      - db:/var/lib/mysql
     networks:
       - mokellah_network
 
@@ -28,9 +29,14 @@ services:
     build: requirements/wordpress
     image: wordpress
     container_name: wordpress
+    ports:
+      - 9000:9000
+    depends_on:
+      - nginx
+      - mariadb
     env_file: .env
     volumes:
-      - mokellah_volume:/var/lib/mysql
+      - wordpress:/var/www/html
     networks:
       - mokellah_network
 
@@ -38,7 +44,12 @@ networks:
   mokellah_network:
 
 volumes:
-  mokellah_volume:
+  wordpress:
+    driver_opts:
+      type: none
+      device: "/home/mokellah/data"
+      o: bind
+  db:
     driver_opts:
       type: none
       device: "/home/mokellah/data"

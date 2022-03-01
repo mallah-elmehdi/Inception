@@ -7,6 +7,8 @@ RUN tar -xvzf latest.tar.gz
 RUN rm latest.tar.gz
 RUN mkdir -p /var/www/html
 RUN mv wordpress/* /var/www/html
+RUN chown -R www-data:www-data /var/www/html/
+RUN chmod 755 -R /var/www/html/
 RUN mkdir conf
 COPY ./conf/ ./conf
 CMD bash ./conf/wp_config.sh

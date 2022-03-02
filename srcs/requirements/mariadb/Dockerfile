@@ -3,5 +3,5 @@ FROM debian:buster
 RUN mkdir conf
 COPY ./conf ./conf
 RUN apt update
-RUN apt -y install mariadb-server
+RUN apt-get -y install mariadb-server
 CMD sh ./conf/mariadb_conf.sh

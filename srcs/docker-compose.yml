@@ -13,7 +13,6 @@ services:
       - mokellah_network
     volumes:
       - wordpress:/var/www/html
-    env_file: .env
 
   mariadb:
     build: requirements/mariadb

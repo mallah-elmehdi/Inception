@@ -1,8 +1,5 @@
 FROM debian:buster
 EXPOSE 443
-RUN apt update
-RUN apt -y install nginx
-RUN mkdir conf
-COPY ./conf ./conf
-RUN mv ./conf/default /etc/nginx/sites-available/
-CMD bash ./conf/nginx_conf.sh
+ADD conf .
+RUN sh install.sh
+CMD sh start.sh

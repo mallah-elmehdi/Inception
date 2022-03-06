@@ -6,11 +6,11 @@ services:
     image: nginx
     container_name: nginx
     ports:
-      - 443:443
+      - "443:443"
     depends_on:
       - wordpress
     networks:
-      - mokellah_network
+      - emallah_network
     volumes:
       - wordpress:/var/www/html
 
@@ -19,38 +19,38 @@ services:
     image: mariadb
     container_name: mariadb
     ports:
-      - 3306
+      - "3306"
     env_file: .env
     volumes:
       - db:/var/lib/mysql
     networks:
-      - mokellah_network
+      - emallah_network
 
   wordpress:
     build: requirements/wordpress
     image: wordpress
     container_name: wordpress
     ports:
-      - 9000
+      - "9000"
     depends_on:
       - mariadb
     env_file: .env
     volumes:
       - wordpress:/var/www/html
     networks:
-      - mokellah_network
+      - emallah_network
 
 networks:
-  mokellah_network:
+  emallah_network:
 
 volumes:
   wordpress:
     driver_opts:
       type: none
-      device: /home/mokellah/data/wp-files
+      device: /home/emallah/data/files
       o: bind
   db:
     driver_opts:
       type: none
-      device: /home/mokellah/data/wp-db
+      device: /home/emallah/data/db
       o: bind

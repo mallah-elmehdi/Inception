@@ -2,3 +2,4 @@
 apt update
 apt -y install mariadb-server
 mv 50-server.cnf /etc/mysql/mariadb.conf.d
+mv my.cnf /etc/mysql

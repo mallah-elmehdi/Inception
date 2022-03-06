@@ -11,6 +11,7 @@ server {
 
 	ssl_certificate /thekey.crt;
 	ssl_certificate_key /thekey.key;
+	ssl_protocols TLSv1.2;
 	#
 	# Note: You should disable gzip for SSL traffic.
 	# See: https://bugs.debian.org/773332
